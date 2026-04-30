@@ -4,18 +4,22 @@ import extras.*
 import direcciones.*
 
 program juego {
+  game.title("Juego")
   game.width(10)
   game.height(7)
   game.cellSize(50)
-  game.title("Juego")
+  game.boardGround("fondo2.jpg")
+
 
   keyboard.up().onPressDo     ({ pepita.mover(arriba)    })
   keyboard.down().onPressDo   ({ pepita.mover(abajo)     })
   keyboard.left().onPressDo   ({ pepita.mover(izquierda) })
   keyboard.right().onPressDo  ({ pepita.mover(derecha)   })
 
-  game.addVisual(pepita)    // Esto se supone que no va aca
+    
   game.addVisual(silvestre) // Deberia tener un archivo aparte ej (nivel 1)
+  game.addVisual(pepita)    // Esto se supone que no va aca
+
 
   game.start()
 }
