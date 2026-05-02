@@ -12,23 +12,23 @@ object pepita {
 
 	method image() = "pepita" + self.estado() + ".png"
 
-	method estado() = if (self.atrapada() || self.cansada()) "-gris" else ""
+	method estado() = if (self.estaAtrapada() || self.estaCansada()) "-gris" else ""
 
 	method positionX() = position.x()
 
 	method energia() = energia
 
-	method atrapada() = position == perseguidor.position()
+	method estaAtrapada() = position == perseguidor.position()
 
 	method mover(direccion) {
 		const siguientePosicion = direccion.siguiente(position)
-		if (!self.cansada() && position != siguientePosicion) {
+		if (!self.estaCansada() && position != siguientePosicion) {
 			self.volar(1)
 			position = siguientePosicion
 		}
 	}
 
-	method cansada() {
+	method estaCansada() {
 		const energiaNecesariaPorKM = 9
 		return energia < energiaNecesariaPorKM
 	}
