@@ -21,14 +21,11 @@ object pepita {
 	method atrapada() = position == perseguidor.position()
 
 	method mover(direccion) {
-		const oldPosition = position
-		position = self.siguientePosicion(direccion)
-
-		if (position != oldPosition) self.volar(1) 
-	}
-
-	method siguientePosicion(direccion) {
-		return if (!self.cansada()) direccion.siguiente(position)
+		const siguientePosicion = direccion.siguiente(position)
+		if (!self.cansada() && position != siguientePosicion) {
+			self.volar(1)
+			position = siguientePosicion
+		}
 	}
 
 	method cansada() {
