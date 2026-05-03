@@ -1,20 +1,76 @@
 import pepita.*
 import comidas.*
+import direcciones.*
 
 describe "Tests de Pepita" {
 
 
-	test "Al comer pepita aumenta su energia" {
+	test "Al comer, pepita aumenta su energia" {
 		pepita.comer(manzana)
 		assert.equals(105, pepita.energia())
 	}
 
-	test "Al volar pepita pierde energia" {
-		pepita.volar(1)
-		assert.equals(89, pepita.energia())
+	test "Al moverse en una direccion, pepita pierde energia" { 
+		pepita.mover(arriba)
+		assert.equals(91, pepita.energia())
 	}
 
+	test "Pepita no va a moverse si no tiene energia suficiente" {
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
 
+		const ultimaPosicion = pepita.position()
+		pepita.mover(derecha)
+		pepita.mover(derecha)
+		pepita.mover(derecha)
 
+		assert.equals(ultimaPosicion, pepita.position())
+		assert.equals(1, pepita.energia())
+	}
+
+	test "Si pepita tiene menos energia que 9 esta cansada" {
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		
+		assert.that(pepita.estaCansada())
+		// Tiene sentido verificar si esta cansada cuando el test es muy parecido a
+		// "Pepita no va a moverse si no tiene energia suficiente" ???
+	}
+	
+	test "Pepita no se movera si no hay espacio en el tablero" {
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		
+		const ultimaPosicion = pepita.position()
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+
+		assert.equals(ultimaPosicion, pepita.position())
+	}
 }
+
+
 
