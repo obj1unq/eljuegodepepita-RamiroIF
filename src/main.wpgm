@@ -20,9 +20,9 @@ program juego {
 
 
   game.addVisual(manzana)
-  game.addVisual(alpiste)
+  game.addVisual(alpiste)   // Esto se supone que no va aca
   game.addVisual(silvestre) // Deberia tener un archivo aparte ej (nivel 1)
-  game.addVisual(pepita)    // Esto se supone que no va aca
+  game.addVisual(pepita)    
 
   game.start()
 }

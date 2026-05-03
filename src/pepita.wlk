@@ -43,7 +43,8 @@ object pepita {
 	// method volar(kms) {
 	// 	energia = energia - (9 * kms)
 	// }
-	
+
+	// Haciendo los tests (tardiamente) note que
 	// No me agrada que exista el metodo volar sin el if que no permita el vuelo sin tener la energia suficiente.
 	// Pero si lo separo y hago
 
@@ -52,7 +53,14 @@ object pepita {
 	// 	energia = energia - (9 * kms)
 	// }
 	
-	// Tengo que reformular mover para que no ocurra el movimiento sin energia, o tendria que repetir el !self.estaCansada()
-	// Asi que elimino el methodo volar y incorporo el consumo de energia dentro del propio "Mover"
+	// Tendria que reformular Mover para que no ocurra el movimiento sin energia, a priori tendria que repetir el !self.estaCansada()
+
+	// Asi que DECIDI
+	// eliminar el methodo volar y incorporar el consumo de energia dentro del propio "Mover"
+
+	// AUNQUE si pongo en consideracion que el metodo "Volar" nunca va a ser ejecutado por el usuario final, ya que no tiene ninguna tecla asignada que lo ejecute por si solo
+	// Podria existir para que me permita referenciar al consumo de energia que hace pepita al moverse de una forma mas "bonita" 
+	// que si simplemente reduzco la energia en el mismo if que verifico la posicion
+
 }
 

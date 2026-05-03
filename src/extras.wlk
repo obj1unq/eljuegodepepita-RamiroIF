@@ -15,8 +15,8 @@ object silvestre {
 
 
     // const presa = pepita
-    // var position = game.at(0, 0)   Si yo no uso property, ya que no necesito el setter
-    //                                el VSCODE me dice que es una variable no usada
+    // var position = game.at(0, 0)   Si yo no uso property, ya que no necesito el setter y solamente genero el Getter
+    //                                el VSCODE me dice que es una variable no usada.
     //                                pero si uso el property, no le molesta que haga un GETTER
     //                                ademas del que propiamente genera el PROPERTY (osea doble getter)
     //                                PORQUE??
