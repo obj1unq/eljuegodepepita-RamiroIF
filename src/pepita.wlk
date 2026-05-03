@@ -22,8 +22,10 @@ object pepita {
 
 	method mover(direccion) {
 		const siguientePosicion = direccion.siguiente(position)
+		const gastoEnergeticoPorKM = 9
+
 		if (!self.estaCansada() && position != siguientePosicion) {
-			self.volar(1)
+			energia = energia - gastoEnergeticoPorKM 
 			position = siguientePosicion
 		}
 	}
@@ -38,9 +40,19 @@ object pepita {
 		game.removeVisual(comida)
 	}
 
-	method volar(kms) {
-		energia = energia - (9 * kms)
-	}
+	// method volar(kms) {
+	// 	energia = energia - (9 * kms)
+	// }
 	
+	// No me agrada que exista el metodo volar sin el if que no permita el vuelo sin tener la energia suficiente.
+	// Pero si lo separo y hago
+
+	// method volar(kms) {
+	// if (!self.estaCansada())
+	// 	energia = energia - (9 * kms)
+	// }
+	
+	// Tengo que reformular mover para que no ocurra el movimiento sin energia, o tendria que repetir el !self.estaCansada()
+	// Asi que elimino el methodo volar y incorporo el consumo de energia dentro del propio "Mover"
 }
 
