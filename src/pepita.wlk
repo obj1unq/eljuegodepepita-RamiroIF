@@ -48,7 +48,9 @@ object pepita {
 		}
 	}
 
-
+	method descender() { // Bonus tutorial 2
+		position = abajo.siguiente(position)
+	}
 
 
 

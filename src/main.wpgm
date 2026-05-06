@@ -18,6 +18,8 @@ program juego {
   keyboard.right().onPressDo  ({ pepita.mover(derecha)   })
   keyboard.c().onPressDo({ pepita.comer(game.uniqueCollider(pepita)) })
 
+  game.onTick(800, "Perder altura por la gravedad", {pepita.descender()}) // Bonus tutorial 2
+
 
   game.addVisual(manzana)
   game.addVisual(alpiste)   // Esto se supone que no va aca
