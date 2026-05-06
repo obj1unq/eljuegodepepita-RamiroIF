@@ -5,7 +5,6 @@ import comidas.*
 import estados.*
 
 object pepita {
-	const perseguidor = silvestre
 	var property position = game.at(5, 3)
 	var energia = 100
 	var estado = descansada
