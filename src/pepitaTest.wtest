@@ -4,6 +4,9 @@ import direcciones.*
 
 describe "Tests de Pepita" {
 
+	test "Al nacer, pepita tiene 100 de energia" {
+		assert.equals(100, pepita.energia())
+	}
 
 	test "Al comer, pepita aumenta su energia" {
 		pepita.comer(manzana)
@@ -36,6 +39,10 @@ describe "Tests de Pepita" {
 
 		assert.equals(ultimaPosicion, pepita.position())
 		assert.equals(1, pepita.energia())
+	}
+
+	test "Si pepita tiene mas de 9 de energia esta descansada" {
+		assert.notThat(pepita.estaCansada())
 	}
 
 	test "Si pepita tiene menos energia que 9 esta cansada" {
