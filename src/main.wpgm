@@ -17,9 +17,13 @@ program juego {
   keyboard.left().onPressDo   ({ pepita.mover(izquierda) })
   keyboard.right().onPressDo  ({ pepita.mover(derecha)   })
   keyboard.c().onPressDo({ pepita.comer(game.uniqueCollider(pepita)) })
-
+                          
+  game.onCollideDo(pepita, { silvestre => 
+    pepita.morir()          // Por que cuando lo pongo ahi me lo pone en naranja?????
+    game.stop() 
+  })
+  
   game.onTick(800, "Perder altura por la gravedad", {pepita.descender()}) // Bonus tutorial 2
-
 
   game.addVisual(manzana)
   game.addVisual(alpiste)   // Esto se supone que no va aca
