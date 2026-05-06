@@ -23,4 +23,9 @@ object cansada {
     }
     // En teoria no deberia necesitar este mover, pero si ejecuto el test "Pepita no va a moverse si no tiene energia suficiente"
     // me marca el error "cansada no entiende el method Mover()"
+    
+}
+
+object muerta {
+    method image() = "pepita-gris.png"
 }

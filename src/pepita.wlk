@@ -18,8 +18,6 @@ object pepita {
 
 	method energia() = energia
 
-	method estaAtrapada() = position == perseguidor.position()
-
 	method estaCansada() {
 		const energiaNecesariaPorKM = 9
 		return energia < energiaNecesariaPorKM
@@ -52,7 +50,11 @@ object pepita {
 		position = abajo.siguiente(position)
 	}
 
-
+	method morir() {
+		estado = muerta
+		//estado = cansada
+		// Podria usar cansada para aprovechar el image = pepitagris que ya tiene hecho
+	}
 
 
 }
