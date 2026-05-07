@@ -1,6 +1,7 @@
 import pepita.*
 import comidas.*
-import direcciones.*
+import direcciones.* 
+import estados.*
 
 describe "Tests de Pepita" {
 
@@ -9,12 +10,16 @@ describe "Tests de Pepita" {
 	}
 
 	test "Al comer, pepita aumenta su energia" {
+		const aporteEnergeticoDeManzana = manzana.energiaQueOtorga()
+
 		pepita.comer(manzana)
-		assert.equals(105, pepita.energia())
+		
+		assert.equals(100 + aporteEnergeticoDeManzana, pepita.energia()) // No deje el literal esperado porque cambia segun la maduracion
 	}
 
 	test "Al moverse en una direccion, pepita pierde energia" { 
 		pepita.mover(arriba)
+		
 		assert.equals(91, pepita.energia())
 	}
 
@@ -39,7 +44,7 @@ describe "Tests de Pepita" {
 
 		assert.equals(ultimaPosicion, pepita.position())
 		assert.equals(1, pepita.energia())
-	}
+	} // No se si este test sigue siendo util, xq ahora cuando se canse se hace un game stop y realmente nunca ocurriria un mover despues de cansarse.
 
 	test "Si pepita tiene mas de 9 de energia esta descansada" {
 		assert.notThat(pepita.estaCansada())
@@ -78,6 +83,16 @@ describe "Tests de Pepita" {
 		assert.equals(ultimaPosicion, pepita.position())
 	}
 }
+
+	// test "Si pepita colisiona con silvestre, muere" {
+	// 	pepita.mover(abajo)
+	// 	pepita.mover(abajo)
+	// 	pepita.mover(abajo)
+
+	// 	assert.equals("pepita-gris.png", pepita.image())
+	// }
+	// Por alguna razon, no me deja verificar ni las colisiones ni el OnTick, por lo tanto ningun evento de game
+
 
 
 

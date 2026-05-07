@@ -2,8 +2,8 @@ import wollok.game.*
 
 object manzana {
 	var property position = game.at(6,8) 
-	const base = 5
-	var madurez = 1
+	const base = 15 // Aumento arbitrario de energia base para mas comodidad en el game
+	var madurez = 3
 
 	method image() = "manzana.png"
 	
