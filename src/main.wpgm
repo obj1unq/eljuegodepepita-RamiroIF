@@ -3,6 +3,8 @@ import pepita.*
 import extras.*
 import direcciones.*
 import comidas.*
+import muros.*
+import nido.*
 
 program juego {
   game.title("Juego")
@@ -16,17 +18,19 @@ program juego {
   keyboard.down().onPressDo   ({ pepita.mover(abajo)     })
   keyboard.left().onPressDo   ({ pepita.mover(izquierda) })
   keyboard.right().onPressDo  ({ pepita.mover(derecha)   })
-  keyboard.c().onPressDo({ pepita.comer(game.uniqueCollider(pepita)) })
-                          
-  game.onCollideDo(pepita, { silvestre => 
-    pepita.morir()          // Por que cuando lo pongo ahi me lo pone en naranja?????
-    game.stop() 
-  })
-  
-  game.onTick(800, "Perder altura por la gravedad", {pepita.descender()}) // Bonus tutorial 2
 
+  keyboard.c().onPressDo({ try { pepita.comer(game.uniqueCollider(pepita)) } catch e : Exception { console.println("Aca no hay comida") } }) // TUTORIAL 3, no quiero una colision con mis comidas a menos que presione C
+
+  game.onCollideDo(silvestre, { alguien => alguien.morir() }) // el game.stop() deberia estar aca o esta bien dentro de morir()?
+  
+  game.onCollideDo(nido, { alguien => alguien.ganar() })
+  
+  game.onTick(8000, "Perder altura por la gravedad", {pepita.descender()}) // Bonus tutorial 2
+
+  game.addVisual(nido)
+  game.addVisual(muro)
   game.addVisual(manzana)
-  game.addVisual(alpiste)   // Esto se supone que no va aca
+  game.addVisual(alpiste)   // Esto y lo de arriba se supone que no va aca
   game.addVisual(silvestre) // Deberia tener un archivo aparte ej (nivel 1)
   game.addVisual(pepita)    
 
