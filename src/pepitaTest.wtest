@@ -1,20 +1,98 @@
 import pepita.*
 import comidas.*
+import direcciones.* 
+import estados.*
 
 describe "Tests de Pepita" {
 
+	test "Al nacer, pepita tiene 100 de energia" {
+		assert.equals(100, pepita.energia())
+	}
 
-	test "Al comer pepita aumenta su energia" {
+	test "Al comer, pepita aumenta su energia" {
+		const aporteEnergeticoDeManzana = manzana.energiaQueOtorga()
+
 		pepita.comer(manzana)
-		assert.equals(105, pepita.energia())
+		
+		assert.equals(100 + aporteEnergeticoDeManzana, pepita.energia()) // No deje el literal esperado porque cambia segun la maduracion
 	}
 
-	test "Al volar pepita pierde energia" {
-		pepita.volar(1)
-		assert.equals(89, pepita.energia())
+	test "Al moverse en una direccion, pepita pierde energia" { 
+		pepita.mover(arriba)
+		
+		assert.equals(91, pepita.energia())
 	}
 
+	test "Pepita no va a moverse si no tiene energia suficiente" {
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
 
+		const ultimaPosicion = pepita.position()
+		pepita.mover(derecha)
+		pepita.mover(derecha)
+		pepita.mover(derecha)
 
+		assert.equals(ultimaPosicion, pepita.position())
+		assert.equals(1, pepita.energia())
+	} // No se si este test sigue siendo util, xq ahora cuando se canse se hace un game stop y realmente nunca ocurriria un mover despues de cansarse.
+
+	test "Si pepita tiene mas de 9 de energia esta descansada" {
+		assert.notThat(pepita.estaCansada())
+	}
+
+	test "Si pepita tiene menos energia que 9 esta cansada" {
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(derecha)
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		
+		assert.that(pepita.estaCansada())
+		// Tiene sentido verificar si esta cansada cuando el test es muy parecido a
+		// "Pepita no va a moverse si no tiene energia suficiente" ???
+	}
+	
+	test "Pepita no se movera si no hay espacio en el tablero" {
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+		
+		const ultimaPosicion = pepita.position()
+		pepita.mover(izquierda)
+		pepita.mover(izquierda)
+
+		assert.equals(ultimaPosicion, pepita.position())
+	}
 }
+
+	// test "Si pepita colisiona con silvestre, muere" {
+	// 	pepita.mover(abajo)
+	// 	pepita.mover(abajo)
+	// 	pepita.mover(abajo)
+
+	// 	assert.equals("pepita-gris.png", pepita.image())
+	// }
+	// Por alguna razon, no me deja verificar ni las colisiones ni el OnTick, por lo tanto ningun evento de game
+
+
+
 
